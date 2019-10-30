@@ -1,24 +1,26 @@
-import { Component } from "@angular/core"
-import { Platform, Tabs } from "ionic-angular"
-import { StatusBar } from "@ionic-native/status-bar"
-import { SplashScreen } from "@ionic-native/splash-screen"
+import { RequestOptions } from '@angular/http';
+import { CookieService } from 'angular2-cookie/core';
+import { LoginPage } from './../pages/login/login';
+import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { LoginPage } from "../pages/login/login"
-import { CookieService } from "angular2-cookie"
-import { TabsPage } from "../pages/tabs/tabs"
+import { TabsPage } from '../pages/tabs/tabs';
 
 @Component({
   templateUrl: "app.html"
 })
 export class MyApp {
-  rootPage: any = LoginPage
-  requestOptions: any
+  @ViewChild(Nav) nav: Nav;
+  rootPage: any = LoginPage;
 
   constructor(
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    private cookieService: CookieService,
+    public requestOptions:RequestOptions,
+    private cookieService: CookieService
   ) {
 
     if (this.cookieService.getObject("usuarioAtual")) {
